@@ -47,16 +47,8 @@ cp .env.example .env
 **Prerequisites:**
 - A Cloudflare API token with **Zone → DNS → Edit** permission (scoped to the target zone)
 
-**1. Create the Cloudflare credentials file on the server:**
 
-```bash
-cat > /etc/letsencrypt/cloudflare.ini <<'EOF'
-dns_cloudflare_api_token = <your-token>
-EOF
-chmod 600 /etc/letsencrypt/cloudflare.ini
-```
-
-**2. Run the setup script:**
+#### Run the setup script
 
 ```bash
 DOMAIN=drop.mydomain.com sudo -E ./setup.sh
