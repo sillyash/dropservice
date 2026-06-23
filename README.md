@@ -33,10 +33,11 @@ Copy `.env.example` to `.env` and adjust as needed:
 cp .env.example .env
 ```
 
-| Variable      | Default       | Description                        |
-|---------------|---------------|------------------------------------|
-| `UPLOAD_PATH` | `/srv/drops`  | Directory where uploads are stored |
-| `PORT`        | `8080`        | Port the Flask server listens on   |
+| Variable          | Default       | Description                        |
+|-------------------|---------------|------------------------------------|
+| `UPLOAD_PATH`     | `/srv/drops`  | Directory where uploads are stored |
+| `PORT`            | `8080`        | Port the Flask server listens on   |
+| `UPLOAD_PASSWORD` | *(required)*  | Password required to upload files  |
 
 ## Deploying
 
