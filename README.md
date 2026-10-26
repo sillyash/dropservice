@@ -56,6 +56,12 @@ cp .env.example .env
 DOMAIN=drop.mydomain.com sudo -E ./setup.sh
 ```
 
+On a fresh install it generates a random `UPLOAD_PASSWORD` (printed once, stored in
+`/opt/dropservice/.env`, mode `640` root:www-data) and refuses to continue if the
+password is still the example `changeme`. Re-running it is safe and is also how you
+**redeploy** after pulling changes — it re-syncs the code to `/opt/dropservice` and
+restarts the service while keeping the existing `.env`.
+
 ### Manual setup
 
 #### Local development
