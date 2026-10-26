@@ -36,6 +36,7 @@ cp .env.example .env
 | Variable          | Default       | Description                        |
 |-------------------|---------------|------------------------------------|
 | `UPLOAD_PATH`     | `/srv/drops`  | Directory where uploads are stored |
+| `HOST`            | `127.0.0.1`   | Address the Flask server binds to (keep it on localhost, behind nginx) |
 | `PORT`            | `8080`        | Port the Flask server listens on   |
 | `UPLOAD_PASSWORD` | *(required)*  | Password required to upload files  |
 
