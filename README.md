@@ -36,6 +36,7 @@ cp .env.example .env
 | Variable          | Default       | Description                        |
 |-------------------|---------------|------------------------------------|
 | `UPLOAD_PATH`     | `/srv/drops`  | Directory where uploads are stored |
+| `HOST`            | `127.0.0.1`   | Address the Flask server binds to (keep it on localhost, behind nginx) |
 | `PORT`            | `8080`        | Port the Flask server listens on   |
 | `UPLOAD_PASSWORD` | *(required)*  | Password required to upload files  |
 
@@ -54,6 +55,12 @@ cp .env.example .env
 ```bash
 DOMAIN=drop.mydomain.com sudo -E ./setup.sh
 ```
+
+On a fresh install it generates a random `UPLOAD_PASSWORD` (printed once, stored in
+`/opt/dropservice/.env`, mode `640` root:www-data) and refuses to continue if the
+password is still the example `changeme`. Re-running it is safe and is also how you
+**redeploy** after pulling changes — it re-syncs the code to `/opt/dropservice` and
+restarts the service while keeping the existing `.env`.
 
 ### Manual setup
 

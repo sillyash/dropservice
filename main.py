@@ -8,6 +8,7 @@ load_dotenv()
 
 app = Flask(__name__)
 UPLOAD = os.getenv("UPLOAD_PATH", "/srv/drops")
+HOST = os.getenv("HOST", "127.0.0.1")
 PORT = int(os.getenv("PORT", "8080"))
 PASSWORD = os.getenv("UPLOAD_PASSWORD", "")
 os.makedirs(UPLOAD, exist_ok=True)
@@ -42,4 +43,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=PORT)
+    app.run(host=HOST, port=PORT)

@@ -55,9 +55,16 @@ info "Installing Python dependencies..."
 
 # ── 5. Environment file ───────────────────────────────────────────────────────
 if [[ ! -f "$APP_DIR/.env" ]]; then
-    info "Creating .env from example..."
-    cp "$APP_DIR/.env.example" "$APP_DIR/.env"
+    info "Creating .env with a generated upload password..."
+    UPLOAD_PASSWORD="$(head -c 18 /dev/urandom | base64 | tr -d '/+=')"
+    sed "s/^UPLOAD_PASSWORD=.*/UPLOAD_PASSWORD=$UPLOAD_PASSWORD/" "$APP_DIR/.env.example" > "$APP_DIR/.env"
+    ok "Upload password: $UPLOAD_PASSWORD (stored in $APP_DIR/.env)"
 fi
+grep -q '^UPLOAD_PASSWORD=changeme$' "$APP_DIR/.env" \
+    && die "UPLOAD_PASSWORD in $APP_DIR/.env is still the example value — set a real one"
+# Holds the upload password: readable by the service user, nobody else
+chown "root:$SERVICE_USER" "$APP_DIR/.env"
+chmod 640 "$APP_DIR/.env"
 
 # ── 6. Upload directory ───────────────────────────────────────────────────────
 info "Creating upload directory $UPLOAD_DIR..."
